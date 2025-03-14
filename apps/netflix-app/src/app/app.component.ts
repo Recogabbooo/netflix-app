@@ -1,13 +1,28 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { Component, computed, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { HeroComponent } from './layout/hero/hero.component';
+import { MoviesService } from './features/movies/movies.service';
 
 @Component({
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterOutlet, HeroComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'netflix-app';
+
+  private readonly _moviesService = inject(MoviesService);
+  heroMovie = computed(() => this._moviesService.selectedMovie());
+  
+   showButton = false;
+
+  constructor(){
+    window.addEventListener('scroll', () => {
+      this.showButton = window.scrollY > 100;
+    });
+  }
+  
+  goTop(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

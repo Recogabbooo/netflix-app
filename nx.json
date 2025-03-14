@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "master",
+  "defaultProject": "netflix-app",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
@@ -15,7 +16,7 @@
     ],
     "sharedGlobals": []
   },
-  "nxCloudId": "67cebd6386ab5868a3e63ebe",
+  "nxCloudId": "67cec0b50cbe672c0540f16f",
   "targetDefaults": {
     "@angular-devkit/build-angular:application": {
       "cache": true,
@@ -51,6 +52,9 @@
       "linter": "eslint",
       "style": "scss",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:component": {
+      "style": "css"
     }
   }
 }

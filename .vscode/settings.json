@@ -1,0 +1,5 @@
+{
+ "editor.multiCursorModifier": "ctrlCmd",
+ "editor.selectionHighlight": false,
+ "editor.occurrencesHighlight": "off"
+}
