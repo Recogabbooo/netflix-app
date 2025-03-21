@@ -65,6 +65,12 @@ const randomMovie = this.trendingMovies()[randomIndex];
 this.selectedMovie.set(randomMovie);
 }
 
+searchMovie(query: string): Observable<MovieResponse>{
+  return this._http.get<MovieResponse>(
+    `${this._apiUrl}/search/movie?api_key=${this._apiKey}&query=${query}`
+);
+}
+
 private _getRandomInt(min=0, max=50): number{
   return Math.floor(Math.random() * (max - min)) + min;
 }
