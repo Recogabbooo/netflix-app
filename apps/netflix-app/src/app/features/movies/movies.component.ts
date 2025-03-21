@@ -18,16 +18,19 @@ export class MoviesComponent {
 
   readonly movies = this._moviesService.movies;
 
+  trendingMovies = computed(() => this._moviesService.trendingMovies());
+
+
 @HostListener('window:scroll')
 onScroll(): void {
 
-  if(this.isLoading() || !this.hasMorePages()) return;
+  if(this.isLoading() || !this.hasMorePages()) {return;}
   
   const scrollPosition = window.innerHeight + window.scrollY;
   const scrollThreshold = document.documentElement.scrollHeight;
 
-  if(scrollPosition >= scrollThreshold)
+  if(scrollPosition >= scrollThreshold) {
   this._moviesService.getMovies();
   
 }
-}
+}}

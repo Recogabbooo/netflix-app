@@ -1,10 +1,11 @@
-<nav class="fixed top-0 z-50 w-full z-500 bg-gradient-to-b from-black to transparent">
+<nav class="fixed top-0 z-50 w-full bg-gradient-to-b from-black to transparent">
   <div class="px-4 py-4 md:px-10">
     <div class="flex items-center justify-between">
       <div class="flex items-center ">
-        <img src="/apps/netflix-app/src/assets/images/logo.png" alt="Movie App" class="h-8">
-        <div class="hidden ml-8 space-x-4 mf:flex">
-          <a [routerLink]="['/']" routerLinkActivate="!text-netflix-red" class="text-white transition-colors hover:text-netflix-gray">Home</a> 
+        <img src="./assets/logo.png" alt="Netflix App" class="h-8"/>
+        
+        <div class="hidden ml-8 space-x-4 md:flex">
+          <a [routerLink]="['/']" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="!text-netflix-red" class="text-white transtion-colors hover:text-netflix-gray">Home</a>
           <a [routerLink]="['/movies']" routerLinkActivate="!text-netflix-red" class="text-white transition-colors hover:text-netflix-gray">Movies</a>
           <a [routerLink]="['/my-list']" routerLinkActivate="!text-netflix-red" class="text-white transition-colors hover:text-netflix-gray">My List</a>          
         </div>
