@@ -1,17 +1,32 @@
-import { Component, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, input } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
+import { MoviesService } from '../../movies.service';
+import { DatePipe, DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-movie-details',
-  imports: [CommonModule],
+  imports: [DatePipe, DecimalPipe],
   templateUrl: './movie-details.component.html',
-  styleUrl: './movie-details.component.css',
 })
 export class MovieDetailsComponent {
   // movieId = this.route.snapshot.params['movieId'];
 
-
   movieId = input.required<string>();
 
+  private readonly _router = inject(Router);
+  private readonly _moviesService = inject(MoviesService);
 
+  movie = rxResource({
+
+    request: this.movieId,
+    loader: ()=> this._moviesService.getMovieById(this.movieId()),
+
+
+  })
+
+
+  goBack(): void {
+    this._router.navigate(['..']);
+  };
 }

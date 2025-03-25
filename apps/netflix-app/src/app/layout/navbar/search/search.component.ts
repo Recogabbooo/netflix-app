@@ -3,10 +3,11 @@ import { Router } from '@angular/router';
 import { MoviesService } from '../../../features/movies/movies.service';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { Movie } from '../../../features/movies/models/movies.interface';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-search',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './search.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -25,7 +26,12 @@ export class SearchComponent {
   movies = linkedSignal(() => this.filteredMovies.value()?.results ?? ([] as Movie[]))
   // movies = computed(() => this.filteredMovies.value()?.results ?? ([] as Movie[]))
 
+getImage(posterPath: string): string {
 
+  return posterPath ? 'https://image.tmdb.org/t/p/w500' + posterPath : './assets/poster-placeholder.png';
+
+
+}
 
   onSearchInput(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -33,7 +39,7 @@ export class SearchComponent {
 
   }
 
-  goToDetails(movieId: number): void {
+  goToDetails(movieId: string): void {
     this._router.navigate(['/movie', movieId]);
     this._clearQuery();
   }

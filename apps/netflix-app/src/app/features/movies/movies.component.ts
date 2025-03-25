@@ -2,10 +2,11 @@ import { Component, computed, HostListener, inject } from '@angular/core';
 import { MoviesService } from './movies.service';
 import { RouterLink } from '@angular/router';
 import { MovieCardComponent } from './models/movie-card/movie-card/movie-card.component';
+import { MovieRowComponent } from './models/movie-row/movie-row.component';
 
 @Component({
   selector: 'app-movies',
-  imports: [RouterLink, MovieCardComponent],
+  imports: [RouterLink, MovieCardComponent, MovieRowComponent],
   templateUrl: './movies.component.html',
 })
 export class MoviesComponent {
