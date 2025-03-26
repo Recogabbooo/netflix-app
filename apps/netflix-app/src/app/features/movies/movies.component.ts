@@ -31,7 +31,8 @@ onScroll(): void {
   const scrollThreshold = document.documentElement.scrollHeight;
 
   if(scrollPosition >= scrollThreshold) {
-  this._moviesService.getMovies();
-  
+  this._moviesService.getMovies(); 
 }
-}}
+
+}
+}

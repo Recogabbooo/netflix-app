@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { Movie } from '../movies.interface';
+import { ImageService } from '../../../../shared/image.service';
 
 @Component({
   selector: 'app-movie-row',
@@ -13,7 +14,9 @@ export class MovieRowComponent {
 
   private readonly BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
+  private readonly _imageService = inject(ImageService);
+
   getImageUrl(PosterPath: string): string {
-    return `${this.BASE_URL}${PosterPath}`;
+    return this._imageService.getImageUrl(PosterPath);
   }
 }

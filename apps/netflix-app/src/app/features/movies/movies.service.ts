@@ -16,7 +16,6 @@ isLoading = signal<boolean>(false);
 
 private readonly _apiKey = 'cf1745e83471f04131404a337602ebaa';
 private readonly _apiUrl = 'https://api.themoviedb.org/3';
-// private readonly _searchTerm = signal<string>('');
 private readonly _http = inject(HttpClient);
 
 constructor() {
@@ -46,7 +45,7 @@ getTrending(): void {
 getMovies(): void {
  this._http
  .get<MovieResponse>(
-  `${this._apiUrl}/movie/popular?api_key=${this._apiKey}`
+  `${this._apiUrl}/movie/popular?api_key=${this._apiKey}&page=${this.currentPage()}`
  ).pipe(
   tap((response) => {
     const currentMovies = this.movies();
@@ -59,16 +58,15 @@ getMovies(): void {
  }
 setRandomMovie() {
 
-const trendingLength = this.trendingMovies().length;
-const randomIndex = this._getRandomInt(0, trendingLength);
+const trendingLength = this.trendingMovies().length
+const randomIndex = this._getRandomInt(0,trendingLength);
 const randomMovie = this.trendingMovies()[randomIndex];
 this.selectedMovie.set(randomMovie);
 }
 
 searchMovie(query: string): Observable<MovieResponse>{
   return this._http.get<MovieResponse>(
-    `${this._apiUrl}/search/movie?api_key=${this._apiKey}&query=${query}`
-);
+    `${this._apiUrl}/search/movie?api_key=${this._apiKey}&query=${query}`);
 }
 
 private _getRandomInt(min=0, max=50): number{
